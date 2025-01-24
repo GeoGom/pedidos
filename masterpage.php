@@ -133,8 +133,11 @@ if (isset($_SESSION['Route360Lite'])) {
               <a class="nav-link" data-bs-dismiss="offcanvas" href="#" onclick="pageLoad('list_pedidos.php','#PageMaster')">Lista de Pedidos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-dismiss="offcanvas" href="#"><?php echo $usuario_activo; ?></a>
-            </li>
+              <a class="nav-link" data-bs-dismiss="offcanvas" href="#" onclick="pageLoad('actualizar_catalogo.php','#PageMaster')">Actualizar Catalogo</a>
+            </li><!--
+            <li class="nav-item">
+              <a class="nav-link" data-bs-dismiss="offcanvas" href="#"><?php //echo $usuario_activo; ?></a>
+            </li>-->
             <li class="nav-item">
               <a class="nav-link" data-bs-dismiss="offcanvas" href="#" onclick="eliminarSesion()">( Salir )</a>
             </li>
