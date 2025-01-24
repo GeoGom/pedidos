@@ -23,7 +23,7 @@ if (isset($_SESSION['Route360Lite'])) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Route360 Lite</title>
+    <title>QuickServe</title>
 
     <!-- App favicon -->
     <link rel="icon" href="assets/brand/logo-sm.svg" type="image/x-icon">
@@ -115,7 +115,10 @@ if (isset($_SESSION['Route360Lite'])) {
 <main>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#" onclick="pageLoad('seleccion_cliente.php','#PageMaster')"><!--<img class="mb-4" src="assets/images/logo-sm.png" alt="" width="auto" height="30">--> Route360 Lite</a>
+      <a class="navbar-brand" href="#" onclick="pageLoad('seleccion_cliente.php','#PageMaster')">
+        <!--<img class="mb-4" src="assets/images/logo-sm.png" alt="" width="auto" height="30">--> 
+        QuickServe
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

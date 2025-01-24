@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="apple-touch-icon" href="assets/brand/bootstrap-logo.svg">
 
 
-    <title>Route360 Lite</title>
+    <title>QuickServe</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <main class="form-signin w-100 m-auto">
   <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" >
 
-    <h1 class="h1 mb-3 fw-normal">Route360 Lite</h1>
+    <h1 class="h1 mb-3 fw-normal">QuickServe</h1>
 
     <div class="form-floating">
       <input type="text" class="form-control" id="codvende" name="codvende" placeholder="COD Vendedor">
