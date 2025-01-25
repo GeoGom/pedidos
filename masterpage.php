@@ -224,6 +224,30 @@ if (isset($_SESSION['Route360Lite'])) {
 
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="captureModal" tabindex="-1" aria-labelledby="captureModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="captureModalLabel">Capturar Imagen del Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Vista previa de la cámara -->
+        <video id="camera" autoplay class="w-100"></video>
+        <canvas id="snapshot" class="w-100 d-none"></canvas>
+        <button id="capture" class="btn btn-success mt-3">Tomar Foto</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" id="saveImage" class="btn btn-primary d-none">Guardar Imagen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

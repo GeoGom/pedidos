@@ -140,6 +140,113 @@ $(document).ready(function(){
 });
 
 
+/*ACTUALIZAR IMAGEN*/
+$(document).ready(function(){
+    $('#buscarproductoActualizar').on('input', function(){
+        var producto = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: 'assets/procesos/buscar_productos_actualizar.php',
+            data: {PRODUCTO: producto},
+            success: function(data){	
+                $('#tabla-buscar-producto-Actualizar').html(data);
+                  
+            },
+            error: function(error) {
+                console.error('Error en la solicitud AJAX: ', error);
+            }
+        });
+    });
+});
+
+$(document).ready(function(){	
+	$('#buscarproductoActualizar').keypress(function(event){
+        if(event.which == 13 ) { // 13 es el código de la tecla Enter
+            event.preventDefault(); // Evita que se envíe el formulario
+              
+        
+        }
+    });
+});
+
+function selectItemsActualizar(data1) {
+    localStorage.setItem('ID_UPLOAD', data1);
+    //$('#srcimagen').val('');
+    $('#captureModal').modal('show');
+    //$('#tabla-msg').html('');
+    //$('#tabla-mayoreo').html(cargando);  
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const camera = document.getElementById("camera");
+    const snapshot = document.getElementById("snapshot");
+    const captureButton = document.getElementById("capture");
+    const saveButton = document.getElementById("saveImage");
+    let stream;
+
+    // Abrir la cámara
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(mediaStream => {
+        stream = mediaStream;
+        camera.srcObject = stream;
+        })
+        .catch(error => {
+        console.error("No se pudo acceder a la cámara: ", error);
+        });
+
+    // Tomar la foto
+    captureButton.addEventListener("click", () => {
+        const context = snapshot.getContext("2d");
+        snapshot.width = camera.videoWidth;
+        snapshot.height = camera.videoHeight;
+        context.drawImage(camera, 0, 0);
+        snapshot.classList.remove("d-none");
+        saveButton.classList.remove("d-none");
+        camera.classList.add("d-none");
+        captureButton.classList.add("d-none");
+    });
+
+    // Guardar la foto
+    saveButton.addEventListener("click", () => {
+        const dataURL = snapshot.toDataURL("image/png");
+        
+        // Subir la imagen al servidor
+        fetch("upload_image.php", {
+        method: "POST",
+        body: JSON.stringify({ image: dataURL }),
+        headers: { "Content-Type": "application/json" }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Imagen subida correctamente");
+            console.log("Respuesta del servidor: ", data);
+        })
+        .catch(error => console.error("Error al subir la imagen: ", error));
+
+        // Reiniciar el modal
+        resetModal();
+    });
+
+    function resetModal() {
+        snapshot.classList.add("d-none");
+        saveButton.classList.add("d-none");
+        camera.classList.remove("d-none");
+        captureButton.classList.remove("d-none");
+    }
+
+    // Limpiar la cámara al cerrar el modal
+    document.getElementById("captureModal").addEventListener("hidden.bs.modal", () => {
+        if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        }
+        resetModal();
+    });
+});
+
+
+
+
+
 
 /// GUARDAR ID CODE MEIRTAS SE AGREGA PRODUCTO A CANASTA ////
 function selectItems(data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,
