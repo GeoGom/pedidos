@@ -39,8 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 */
 
+
 // Verificar si se envió el formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    
     // Verificar si se seleccionó un archivo
     if (isset($_FILES['image']) && isset($_POST['imageName'])) {
         $image = $_FILES['image'];
@@ -130,4 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo "Método no permitido.";
 }
+
+
+
 ?>

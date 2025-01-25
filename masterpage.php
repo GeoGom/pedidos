@@ -230,18 +230,16 @@ if (isset($_SESSION['Route360Lite'])) {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="captureModalLabel">Capturar Imagen del Producto</h5>
+        <h5 class="modal-title" id="captureModalLabel">Seleccione la Imagen</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Vista previa de la cámara -->
-        <video id="camera" autoplay class="w-100"></video>
-        <canvas id="snapshot" class="w-100 d-none"></canvas>
-        <button id="capture" class="btn btn-success mt-3">Tomar Foto</button>
+        <label for="image"></label>
+        <input type="file" name="image" id="image" accept="image/*" required>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" id="saveImage" class="btn btn-primary d-none">Guardar Imagen</button>
+        <button type="button" id="saveImage" class="btn btn-primary">Guardar Imagen</button>
       </div>
     </div>
   </div>
@@ -252,7 +250,7 @@ if (isset($_SESSION['Route360Lite'])) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/route360lite_main.js?v=1.1.16"></script>
+<script src="assets/js/route360lite_main.js?v=1.1.25"></script>
 
 <?php
 echo "<script>

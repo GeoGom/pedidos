@@ -177,72 +177,109 @@ function selectItemsActualizar(data1) {
     //$('#tabla-mayoreo').html(cargando);  
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+$(document).ready(function() {
+    $('#saveImage').click(function() {
+
+        var id = localStorage.getItem("ID_UPLOAD");
+        var imagefile = $('#image').val();
+
+        $.ajax({
+            type: 'POST',
+            url: 'assets/procesos/upload.php',
+            data: { ID: id, IMAGE: imagefile },
+            success: function(response) {    
+                if (response == 1) {
+                    $('#captureModal').modal('hide');
+                    pageLoad('seleccion_productos.php', '#PageMaster');
+                }else{
+                    $('#tabla-precio-msg').html(response);
+                }
+            },
+            error: function(error) {
+                console.error('Error en la solicitud AJAX: ', error);
+            }
+        });
+
+    });
+});        
+
+/*document.addEventListener("DOMContentLoaded", () => {
     const camera = document.getElementById("camera");
     const snapshot = document.getElementById("snapshot");
     const captureButton = document.getElementById("capture");
     const saveButton = document.getElementById("saveImage");
     let stream;
-
-    // Abrir la cámara
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(mediaStream => {
-        stream = mediaStream;
+  
+    // Abrir la cámara cuando se muestra el modal
+    const captureModal = document.getElementById("captureModal");
+    captureModal.addEventListener("shown.bs.modal", async () => {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
         camera.srcObject = stream;
-        })
-        .catch(error => {
+        camera.play();
+      } catch (error) {
         console.error("No se pudo acceder a la cámara: ", error);
-        });
-
-    // Tomar la foto
-    captureButton.addEventListener("click", () => {
-        const context = snapshot.getContext("2d");
-        snapshot.width = camera.videoWidth;
-        snapshot.height = camera.videoHeight;
-        context.drawImage(camera, 0, 0);
-        snapshot.classList.remove("d-none");
-        saveButton.classList.remove("d-none");
-        camera.classList.add("d-none");
-        captureButton.classList.add("d-none");
+        alert("No se pudo acceder a la cámara. Asegúrate de haber otorgado permisos.");
+      }
     });
-
-    // Guardar la foto
+  
+    // Detener la cámara cuando se cierra el modal
+    captureModal.addEventListener("hidden.bs.modal", () => {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+      resetModal();
+    });
+  
+    // Capturar la imagen
+    captureButton.addEventListener("click", () => {
+      const context = snapshot.getContext("2d");
+      snapshot.width = camera.videoWidth;
+      snapshot.height = camera.videoHeight;
+      context.drawImage(camera, 0, 0);
+      snapshot.classList.remove("d-none");
+      saveButton.classList.remove("d-none");
+      camera.classList.add("d-none");
+      captureButton.classList.add("d-none");
+    });
+  
+    // Guardar la imagen
     saveButton.addEventListener("click", () => {
-        const dataURL = snapshot.toDataURL("image/png");
-        
-        // Subir la imagen al servidor
-        fetch("upload_image.php", {
+        var id = localStorage.getItem("ID_UPLOAD");
+      const dataURL = snapshot.toDataURL("image/png");
+  
+      // Subir la imagen al servidor
+      fetch("assets/procesos/upload.php", {
         method: "POST",
-        body: JSON.stringify({ image: dataURL }),
+        body: JSON.stringify({ 
+            image: dataURL, // Imagen capturada
+            ID: id          // ID adicional
+          }),
         headers: { "Content-Type": "application/json" }
-        })
+      })
         .then(response => response.json())
         .then(data => {
-            alert("Imagen subida correctamente");
-            console.log("Respuesta del servidor: ", data);
+          if (data.status === "success") {
+            //alert("Imagen subida correctamente");
+            //console.log("Ruta de la imagen en el servidor: ", data.path);
+            // Reiniciar el modal
+            resetModal();
+          } else {
+            alert("Error al subir la imagen: " + data.message);
+          }
         })
         .catch(error => console.error("Error al subir la imagen: ", error));
-
-        // Reiniciar el modal
-        resetModal();
     });
-
+  
     function resetModal() {
-        snapshot.classList.add("d-none");
-        saveButton.classList.add("d-none");
-        camera.classList.remove("d-none");
-        captureButton.classList.remove("d-none");
+      snapshot.classList.add("d-none");
+      saveButton.classList.add("d-none");
+      camera.classList.remove("d-none");
+      captureButton.classList.remove("d-none");
+      $('#captureModal').modal('hide');
     }
-
-    // Limpiar la cámara al cerrar el modal
-    document.getElementById("captureModal").addEventListener("hidden.bs.modal", () => {
-        if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-        }
-        resetModal();
-    });
-});
-
+  });
+  */
 
 
 
