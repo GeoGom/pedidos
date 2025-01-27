@@ -36,8 +36,11 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_
     inner join existencia ex on c.id_code = ex.id_code
     inner join precios pre on ex.id_precio = pre.id_precio
     left join referencias as r on r.codigo = c.codigo
-    WHERE ex.ns = '$ns_select' and c.codigo = '$filtro' or r.referencia = '$filtro' and c.nmf = 0
-    or ex.ns = '$ns_select' and c.nmf = 0  and  c.descrip like '%".$filtro."%' group by c.id_code LIMIT 100";
+    WHERE ex.ns = '$ns_select' and c.codigo = '$filtro' and c.nmf = 0
+    or ex.ns = '$ns_select' and  r.referencia = '$filtro' and c.nmf = 0
+    or ex.ns = '$ns_select' and c.nmf = 0  and  c.descrip like '%".$filtro."%' 
+    or ex.ns = '$ns_select' and  c.id_code = '$filtro'  and c.nmf = 0
+    group by c.id_code LIMIT 100";
 
     $data_consulta = mysqli_query($conexion, $consulta);
 

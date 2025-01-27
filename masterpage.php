@@ -154,10 +154,7 @@ if (isset($_SESSION['Route360Lite'])) {
     </div>
   </nav>
 
-  <div class="container">
-    <br>
-    <div id="PageMaster" name="PageMaster"></div>
-  </div>
+ 
 
 
 <div class="modal fade" id="modal-agregarCanasta" tabindex="-1" aria-labelledby="modalSigninLabel">
@@ -239,11 +236,19 @@ if (isset($_SESSION['Route360Lite'])) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" id="saveImage" class="btn btn-primary">Guardar Imagen</button>
+        <button type="button" id="saveImage" name="saveImage" class="btn btn-primary">Guardar Imagen</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<div class="container">
+    <br>
+    <div id="PageMaster" name="PageMaster"></div>
+  </div>
+
 
 
 </main>

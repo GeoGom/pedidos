@@ -159,6 +159,7 @@ $(document).ready(function(){
     });
 });
 
+
 $(document).ready(function(){	
 	$('#buscarproductoActualizar').keypress(function(event){
         if(event.which == 13 ) { // 13 es el código de la tecla Enter
@@ -177,9 +178,64 @@ function selectItemsActualizar(data1) {
     //$('#tabla-mayoreo').html(cargando);  
 }
 
+function actualizaBusqueda(id) {
+    $.ajax({
+        type: 'POST',
+        url: 'assets/procesos/buscar_productos_actualizar.php',
+        data: {PRODUCTO: id},
+        success: function(data){	
+            $('#tabla-buscar-producto-Actualizar').html(data);
+              
+        },
+        error: function(error) {
+            console.error('Error en la solicitud AJAX: ', error);
+        }
+    });
+}
+
+
+$(document).ready(function () {
+    $('#saveImage').click(function () {
+
+        var id = localStorage.getItem("ID_UPLOAD");
+        var imagefile = $('#image')[0].files[0]; // Obtén el archivo seleccionado
+        alert(imagefile);
+        // Verifica si se seleccionó un archivo
+        if (!imagefile) {
+            alert('Por favor selecciona una imagen antes de guardar.');
+            return;
+        }
+
+        // Crea un objeto FormData para enviar los datos
+        var formData = new FormData();
+        formData.append('ID', id); // Agrega el ID al FormData
+        formData.append('IMAGE', imagefile); // Agrega el archivo al FormData
+
+        // Realiza la solicitud AJAX para subir el archivo
+        $.ajax({
+            type: 'POST',
+            url: 'assets/procesos/upload.php', // Ruta a tu script PHP
+            data: formData,
+            processData: false, // Evita que jQuery procese los datos
+            contentType: false, // Evita que jQuery configure el tipo de contenido
+            success: function (response) {
+                if (response == 1) {
+                    $('#captureModal').modal('hide');
+                    actualizaBusqueda(id);
+                } else {
+                    $('#tabla-precio-msg').html(response);
+                }
+            },
+            error: function (error) {
+                console.error('Error en la solicitud AJAX: ', error);
+            }
+        });
+    });
+});
+/*
 $(document).ready(function() {
     $('#saveImage').click(function() {
-
+        alert('preciono guardar');
         var id = localStorage.getItem("ID_UPLOAD");
         var imagefile = $('#image').val();
 
@@ -190,7 +246,7 @@ $(document).ready(function() {
             success: function(response) {    
                 if (response == 1) {
                     $('#captureModal').modal('hide');
-                    pageLoad('seleccion_productos.php', '#PageMaster');
+                    actualizaBusqueda(id);
                 }else{
                     $('#tabla-precio-msg').html(response);
                 }
@@ -202,7 +258,7 @@ $(document).ready(function() {
 
     });
 });        
-
+*/
 /*document.addEventListener("DOMContentLoaded", () => {
     const camera = document.getElementById("camera");
     const snapshot = document.getElementById("snapshot");
