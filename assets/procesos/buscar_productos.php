@@ -54,12 +54,12 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_
 ?>
 <div class="col">
     <div class="card shadow-sm">
-        <!-- Mostrar la imagen del producto con fallback 
+    
         <img class="card-img-top" 
-             src="http://10.243.141.63/img/@<?php echo $row['ID']; ?>.jpg" 
+             src="http://localhost/pedidos/img/@<?php echo $row['ID']; ?>.jpg" 
              alt="Imagen de <?php echo $row['NOMBRE']; ?>" 
              style="width: 100%; height: 225px; object-fit: cover;" 
-             onerror="this.onerror=null; this.src='http://10.243.141.63/img/imgnull.jpg';"> -->
+             onerror="this.onerror=null; this.src='http://localhost/pedidos/img/imgnull.jpg';"> 
         <div class="card-body">
             <p class="card-text"><?php echo $row['NOMBRE']; ?></p>
             <p class="card-text"><?php echo $row['CODBARRA'].'['.$row['ID'].']'; ?></p>
