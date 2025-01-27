@@ -17,7 +17,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_
 
 
 
-<script src="assets/js/route360lite_main.js?v=1.1.25"></script>
+<script src="assets/js/uploadImg.js"></script>
 <?php  
 } else {
   echo "<script>

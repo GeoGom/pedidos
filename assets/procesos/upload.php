@@ -139,6 +139,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_
 if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     if (isset($_FILES['IMAGE']) && isset($_POST['ID'])) {
         $image = $_FILES['IMAGE'];
+        $id = $_POST['ID'];
 
         // Validar extensión y tipo de archivo
         $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
@@ -154,7 +155,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
         }
 
         // Generar un nombre único
-        $imageName = uniqid() . '.' . $fileExtension;
+        $imageName = '@' . $id . '.' . $fileExtension;
 
         // Validar que el archivo sea una imagen
         $check = getimagesize($image['tmp_name']);
@@ -218,7 +219,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
             }
         }
 
-        echo "Imagen subida con éxito. <a href='$targetFile'>Ver Imagen</a>";
+        echo 1;
     } else {
         echo "Error: No se seleccionó un archivo o no se proporcionó un ID.";
     }
