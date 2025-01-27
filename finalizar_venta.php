@@ -183,7 +183,8 @@ if (isset($_SESSION['canastaItems']) && !empty($_SESSION['canastaItems'])) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/route360lite_main.js?1.1.16"></script>
+<script src="assets/js/route360lite_main.js?V=1.1.25"></script>
+<script src="assets/js/WebSockets.js?V=1.0.3"></script>
 
 
 <!-- JS de Flatpickr -->

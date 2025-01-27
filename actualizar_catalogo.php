@@ -17,7 +17,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_
 
 
 
-<script src="assets/js/uploadImg.js"></script>
+<script src="assets/js/uploadImg.js?V=1.0.0"></script>
 <?php  
 } else {
   echo "<script>

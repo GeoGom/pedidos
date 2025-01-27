@@ -13,7 +13,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_
 
 </div>
 
-<script src="assets/js/route360lite_main.js?v=1.1.17"></script>
+<script src="assets/js/WebSockets.js?v=1.0.0"></script>
 <?php  
 
 }

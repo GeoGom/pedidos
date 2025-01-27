@@ -35,11 +35,11 @@ class WebSocketServer implements MessageComponentInterface {
 }
 
 // Configurar el servidor WebSocket
-$app = new App('127.0.0.1', 8081, '0.0.0.0'); // Inicia el servidor en ws://ip_servidor:8080
+$app = new App('10.243.238.252', 8081, '0.0.0.0'); // Inicia el servidor en ws://ip_servidor:8080
 $app->route('/pedidos', new WebSocketServer(), ['*']); // Define la ruta "/pedidos"
 
 // Mensaje indicando que el servidor está corriendo
-echo "Servidor WebSocket corriendo en ws://127.0.0.1:8081/pedidos\n";
+echo "Servidor WebSocket corriendo\n";
 
 // Iniciar el servidor
 $app->run();

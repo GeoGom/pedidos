@@ -51,15 +51,22 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && mb_strtolower($_SERVER['HTTP_X_
           $nombre = $row['NOMBRE'];
           $preciou = $row['PRECIOU'];
 
+          // Construye automáticamente la URL base del servidor
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $hostW = $_SERVER['HTTP_HOST']; // Obtiene el host actual (dominio o IP)
+        $baseURL = $protocol . $hostW . "/pedidos/assets/procesos/img/";
+        $ImgURL = $baseURL . "@" . $id . ".jpg";
+        $ImgURLnull = $baseURL . "imgnull.jpg";
+
 ?>
 <div class="col">
     <div class="card shadow-sm">
     
         <img class="card-img-top" 
-             src="http://localhost/pedidos/assets/procesos/img/@<?php echo $row['ID']; ?>.jpg" 
+             src="<?php echo $ImgURL; ?>" 
              alt="Imagen de <?php echo $row['NOMBRE']; ?>" 
              style="width: 100%; height: 225px; object-fit: cover;" 
-             onerror="this.onerror=null; this.src='http://localhost/pedidos/assets/procesos/img/imgnull.jpg';"> 
+             onerror="this.onerror=null; this.src='<?php echo $ImgURLnull; ?>'">
         <div class="card-body">
             <p class="card-text"><?php echo $row['NOMBRE']; ?></p>
             <p class="card-text"><?php echo $row['CODBARRA'].'['.$row['ID'].']'; ?></p>
